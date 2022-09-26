@@ -1,0 +1,70 @@
+<!-- Header -->
+<%- include('./partials/head.ejs', { title: "DEMO MVC" }); -%>
+<div class="container">
+  <form action="/" method="post" enctype="multipart/form-data">
+    <div class="mb-3 row justify-content-md-center">
+      <label for="exampleFormControlInput1" class="form-label"
+        >Mã sản phẩm:</label
+      >
+      <input
+        type="text"
+        name="ma_sp"
+        class="form-control"
+        id="ma_sp"
+        placeholder="Mã sản phẩm"
+      />
+      <label for="exampleFormControlInput1" class="form-label"
+        >Tên sản phẩm:
+      </label>
+      <input
+        type="text"
+        name="ten_sp"
+        class="form-control"
+        id="ten_sp"
+        placeholder="Tên sản phẩm"
+      />
+      <label for="exampleFormControlInput1" class="form-label"
+        >Số lượng:
+      </label>
+      <input
+        type="number"
+        name="so_luong"
+        class="form-control"
+        id="so_luong"
+        placeholder="Số lượng"
+      />
+      <div class="row justify-content-center">
+        <input
+          type="submit"
+          class="btn btn-primary col-3 m-3"
+          id="submit"
+          class="form-control"
+        />
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <th scope="row">Mã sản phẩm</th>
+        <th scope="row">Tên sản phẩm</th>
+        <th scope="row">Số lượng</th>
+        <th scope="row">Chức năng</th>
+      </tr>
+      <% for (var i = 0; i < data.length; i++) { %>
+      <tr>
+        <td scope="row"><%= data[i].ma_sp %></td>
+        <td scope="row"><%= data[i].ten_sp %></td>
+        <td scope="row"><%= (data[i].so_luong == null)? 0: data[i].so_luong %></td>
+        <td scope="row">
+          <form action="/delete" method="post" enctype="multipart/form-data">
+                <input type="hidden" value="<%= data[i].ma_sp %>" name="ma_sp"/>
+                <input type="submit" value="Xóa"/>
+          </form>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
